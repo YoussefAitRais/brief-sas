@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #define max 30
 
@@ -68,11 +69,11 @@ void modifietache (Gtaches tache[], int i){
 
     printf("modifier Un titre \n");
 
-    scanf ("%s", &tache[i].titre);
+    scanf ("%c", &tache[i].titre);
 
 
     printf("modifier Un description \n");
-    scanf ("%s", &tache[i].description);
+    scanf ("%c", &tache[i].description);
 
 
     printf("modifier la date de echeance \n");
@@ -86,7 +87,7 @@ void modifietache (Gtaches tache[], int i){
 
 
     printf("modifier une priorite : \n");
-    scanf ("%s", &tache[i].priorite);
+    scanf ("%c", &tache[i].priorite);
 
 
 
@@ -109,7 +110,8 @@ main ()
 // 3. Modifier une tâche
 // 4. Supprimer une tâche
 // 5. Filtrer les tâches par priorité
-    while(1)
+    bool close = false;
+    do
     {
         printf(" --------- Afficher Le Menu Principale : --------\n");
 
@@ -159,9 +161,15 @@ main ()
             printf( "----------Bien Modifie-----------\n");
 
             break;
+        case 0:
+            printf("Au revoir");
+            close = true;
+            break;
         default :
+            printf("Au revoir");
+            close = true;
             break;
         }
-    }
+    }while(close == false);
     return 0;
 }
