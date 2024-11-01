@@ -20,6 +20,7 @@ typedef struct date
 
 typedef struct Gtaches
 {
+    int idtache;
     char titre[100];
     char description [500];
     date dateecheance;
@@ -35,6 +36,8 @@ void ajoutetache(Gtaches tache[],int i)
 
 
 
+
+    tache[i].idtache=i+1;
     printf("-Ajouter Un Tache  %d \n",i+1);
     printf("------------espace----------\n");
 
@@ -133,22 +136,18 @@ void modifietache (Gtaches tache[], int i)
 
 // fonction pour supprimer une tâche
 
-void suprimetache ( Gtaches tache[], int nbr)
+void suprimetache ( Gtaches tache[], int nbr ,int index)
 {
 
-    int index;
 
-
-    printf("------------Suprimmer une tache---------- \n");
-    printf ("--Saisir l'indice \n");
-    scanf("%s", &index);
 
     printf("|-----------------------------------|\n");
-
+    Gtaches tm;
     for (int i=index ; i<nbr ; i++)
     {
-
+        tm=tache[i];
         tache[i] = tache[i+1] ;
+        tache[i+1]=tm;
     }
 
 }
@@ -235,7 +234,8 @@ main ()
             for (int i=0 ; i<nbr ; i++)
 
             {
-                printf("--La  Tache : %d \n",i+1);
+
+                printf("--La  Tache : %d \n",tache[i].idtache);
 
                 printf ("--Un titre : %s \n", tache[i].titre);
 
@@ -274,7 +274,11 @@ main ()
             {
                 printf(" ---------Aucun Tache----- \n");
             }
-            suprimetache(tache, nbr);
+             int indx;
+                printf("------------Suprimmer une tache---------- \n");
+                printf ("--Saisir l'indice \n");
+                scanf("%d", &indx);
+            suprimetache(tache, nbr,indx-1);
             nbr--;
             printf("Bien Supprimer \n");
             break;
